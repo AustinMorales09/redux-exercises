@@ -1,4 +1,71 @@
-//1 Dispatch an Action Event
+// 1 Create a Redux Store
+
+// Redux is a state management framework that can be used with a number of different web technologies, including React.
+
+// In Redux, there is a single state object that's responsible for the entire state of your application. This means if you had a React app with ten components, and each component had its own local state, the entire state of your app would be defined by a single state object housed in the Redux store. This is the first important principle to understand when learning Redux: the Redux store is the single source of truth when it comes to application state.
+
+// This also means that any time any piece of your app wants to update state, it must do so through the Redux store. The unidirectional data flow makes it easier to track state management in your app.
+
+// The Redux store is an object which holds and manages application state. There is a method called createStore() on the Redux object, which you use to create the Redux store. This method takes a reducer function as a required argument. The reducer function is covered in a later challenge, and is already defined for you in the code editor. It simply takes state as an argument and returns state.
+
+// Declare a store variable and assign it to the createStore() method, passing in the reducer as an argument.
+
+// Note: The code in the editor uses ES6 default argument syntax to initialize this state to hold a value of 5. If you're not familiar with default arguments, you can refer to the ES6 section in the Curriculum which covers this topic.
+
+const reducer = (state = 5) => {
+  return state;
+}
+
+// Redux methods are available from a Redux object
+// For example: Redux.createStore()
+// Define the store here:
+
+
+
+// 2. Get State from the Redux Store
+// The Redux store object provides several methods that allow you to interact with it. For example, you can retrieve the current state held in the Redux store object with the getState() method.
+
+// The code from the previous challenge is re-written more concisely in the code editor. Use store.getState() to retrieve the state from the store, and assign this to a new variable currentState
+
+const store = Redux.createStore(
+  (state = 5) => state
+);
+
+// Change code below this line
+
+
+
+
+
+// 3 Define a Redux Action
+// Since Redux is a state management framework, updating state is one of its core tasks. In Redux, all state updates are triggered by dispatching actions. An action is simply a JavaScript object that contains information about an action event that has occurred. The Redux store receives these action objects, then updates its state accordingly. Sometimes a Redux action also carries some data. For example, the action carries a username after a user logs in. While the data is optional, actions must carry a type property that specifies the 'type' of action that occurred.
+
+// Think of Redux actions as messengers that deliver information about events happening in your app to the Redux store. The store then conducts the business of updating state based on the action that occurred.
+
+// Writing a Redux action is as simple as declaring an object with a type property. Declare an object action and give it a property type set to the string 'LOGIN'.
+
+// Define an action here:
+
+
+
+
+
+
+// 4 Define an Action Creator
+// After creating an action, the next step is sending the action to the Redux store so it can update its state. In Redux, you define action creators to accomplish this. An action creator is simply a JavaScript function that returns an action. In other words, action creators create objects that represent action events.
+
+// Define an arrow function named actionCreator() that returns the action object when called.
+
+
+
+const action = {
+  type: 'LOGIN'
+}
+// Define an action creator here:
+
+
+
+//5 Dispatch an Action Event
 
 // dispatch method is what you use to dispatch actions to the Redux store. Calling store.dispatch() and passing the value returned from an action creator sends an action back to the store.
 
@@ -28,7 +95,7 @@ const store = Redux.createStore(
 
 
 
-//2   Handle an Action in the Store
+//6   Handle an Action in the Store
 
 // After an action is created and dispatched, the Redux store needs to know how to respond to that action. This is the job of a reducer function. Reducers in Redux are responsible for the state modifications that take place in response to actions. A reducer takes state and action as arguments, and it always returns a new state. It is important to see that this is the only role of the reducer. It has no side effects — it never calls an API endpoint and it never has any hidden surprises. The reducer is simply a pure function that takes state and action, then returns new state.
 
@@ -59,7 +126,7 @@ const defaultState = {
 
 
 
-// 3  Use a Switch Statement to Handle Multiple Actions
+// 7  Use a Switch Statement to Handle Multiple Actions
 
 //   You can tell the Redux store how to handle multiple action types. Say you are managing user authentication in your Redux store. You want to have a state representation for when users are logged in and when they are logged out. You represent this with a single state object with the property authenticated. You also need action creators that create actions corresponding to user login and user logout, along with the action objects themselves.
   
@@ -95,7 +162,7 @@ const defaultState = {
 
 
 
-//4   Use const for Action Types
+//8   Use const for Action Types
 
 //   A common practice when working with Redux is to assign action types as read-only constants, then reference these constants wherever they are used. You can refactor the code you're working with to write the action types as const declarations.
   
@@ -147,7 +214,7 @@ const defaultState = {
 
 
 
-//5   Register a Store Listener
+//9   Register a Store Listener
 
 //   Another method you have access to on the Redux store object is store.subscribe(). This allows you to subscribe listener functions to the store, which are called whenever an action is dispatched against the store. One simple use for this method is to subscribe a function to your store that simply logs a message every time an action is received and the store is updated.
   
@@ -187,7 +254,7 @@ console.log(count);
 
 
 
-//6 Combine Multiple Reducers
+//10 Combine Multiple Reducers
 
 // When the state of your app begins to grow more complex, it may be tempting to divide state into multiple pieces. Instead, remember the first principle of Redux: all app state is held in a single state object in the store. Therefore, Redux provides reducer composition as a solution for a complex state model. You define multiple reducers to handle different pieces of your application's state, then compose these reducers together into one root reducer. The root reducer is then passed into the Redux createStore() method.
 
@@ -234,12 +301,14 @@ const authReducer = (state = {authenticated: false}, action) => {
       return state;
   }
 };
+const rootReducer = //define the root reducer here
+
+const store = Redux.createStore(rootReducer);
 
 
 
 
-
-//7 Send Action Data to the Store
+//11 Send Action Data to the Store
 
 // By now you've learned how to dispatch actions to the Redux store, but so far these actions have not contained any information other than a type. You can also send specific data along with your actions. In fact, this is very common because actions usually originate from some user interaction and tend to carry some data with them. The Redux store often needs to know about this data.
 
