@@ -20,7 +20,7 @@ const reducer = (state = 5) => {
 // For example: Redux.createStore()
 // Define the store here:
 
-
+const store = Redux.createStore(reducer)
 
 // 2. Get State from the Redux Store
 // The Redux store object provides several methods that allow you to interact with it. For example, you can retrieve the current state held in the Redux store object with the getState() method.
@@ -33,7 +33,7 @@ const store = Redux.createStore(
 
 // Change code below this line
 
-
+const currentState = store.getState();
 
 
 
@@ -46,7 +46,9 @@ const store = Redux.createStore(
 
 // Define an action here:
 
-
+const action = {
+  type: 'LOGIN'
+}
 
 
 
@@ -63,7 +65,9 @@ const action = {
 }
 // Define an action creator here:
 
-
+const actionCreator = (action) =>{
+  return action
+}
 
 //5 Dispatch an Action Event
 
